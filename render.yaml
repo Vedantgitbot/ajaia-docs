@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: ajaia-docs-api
+    runtime: python
+    plan: free
+    rootDir: src/backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: mkdir -p ../../database/data && python -c "import app.models; from app.db import engine, Base; Base.metadata.create_all(engine)" && python ../../database/seed.py && python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
+
+  - type: web
+    name: ajaia-docs-web
+    runtime: node
+    plan: free
+    rootDir: src/frontend
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.19.5
+      - key: BACKEND_URL
+        value: https://ajaia-docs-api.onrender.com
