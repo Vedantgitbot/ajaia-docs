@@ -26,4 +26,4 @@ services:
       - key: NODE_VERSION
         value: 20.19.5
       - key: BACKEND_URL
-        value: https://ajaia-docs-api.onrender.com
+        value: https://ajaia-docs-api-4nq8.onrender.com
