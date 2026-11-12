@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
 from app.core.errors import register_error_handlers
-from app.routers import auth, documents
+from app.routers import auth, documents, shares, uploads
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s %(message)s")
 
@@ -17,6 +17,8 @@ app.add_middleware(
 register_error_handlers(app)
 app.include_router(auth.router)
 app.include_router(documents.router)
+app.include_router(shares.router)
+app.include_router(uploads.router)
 
 
 @app.get("/health")

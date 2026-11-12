@@ -44,3 +44,11 @@ class DocSummary(ORM):
 class DocOut(DocSummary):
     content: dict[str, Any]
     version: int
+
+class ShareIn(BaseModel):
+    email: EmailStr
+    role: Literal["editor", "viewer"]
+
+class ShareOut(BaseModel):
+    user: UserOut
+    role: Literal["editor", "viewer"]
