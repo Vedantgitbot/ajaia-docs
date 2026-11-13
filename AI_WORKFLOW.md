@@ -79,3 +79,4 @@ Claude was used as a coding assistant, while ChatGPT was used as a documentation
 The technology stack, architecture, design choices, and overall technical direction of Ajaia Docs were determined by me.
 
 This approach allowed me to use AI to accelerate development while maintaining ownership of the engineering decisions and final application.
+
